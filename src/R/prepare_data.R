@@ -75,7 +75,7 @@ nks_df <-  nks_df %>%
 
 # Create the map
 p <- ggplot() +
-  #raster comes as the first layer, municipalities on top
+  # map the raster
   geom_raster(data = forest, aes(x = x,
                                  y = y,
                                  fill = factor(forest_only),
@@ -83,17 +83,20 @@ p <- ggplot() +
               show.legend = FALSE) +
   scale_alpha_discrete(name = "", range = c(0, 1), guide = F) +
   scale_fill_manual(values = c("transparent", "forestgreen")) +
+  # map the neon domains
   geom_polygon(data=nd_df, aes(x = long, y = lat, group = group), 
                color='black', fill = "transparent", size = .25)+
+  # map the forested sites that are not in the study
   geom_point(data = nsf_df, aes(x = long, y = lat), size = 2, 
           colour = "#000000", fill = NA, shape = 20) +
+  # map the forested sites that are in the study
   geom_point(data = nks_df,  aes(x = long, y = lat), size = 2,
           colour='#D62728', fill = NA, shape = 18) +
   theme(legend.position = "none") +
   theme_map()
 
 ggsave(file = "results/site_map.eps", p, width = 4, height = 3, 
-       dpi=600, units = "cm", scale = 3) #saves g
+       dpi=600, units = "cm", scale = 3) #saves p
 
 
 
