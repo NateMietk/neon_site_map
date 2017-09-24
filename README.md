@@ -36,8 +36,8 @@ This will call all R scripts and run all processess.
 Tasks
 ------------
 
-The script `get_data.R` pulls data from the internet, so you'll need an internet connection.  It will automatically verify that the data are currently not downloaded to your machine, created appropriate folder for storage, and unzip files.
+1. The script `get_data.R` pulls data from the internet, so you'll need an internet connection.  It will automatically verify that the data are currently not downloaded to your machine, created appropriate folder for storage, and unzip files.
 
-The script `prepare_data.R` will process all neccesary spatial files to be fed into the ggplot map routine
+2. The script `prepare_data.R` will process all neccesary spatial files to be fed into the ggplot map routine
 
-The `map_data.R` script will create the map and save it as an *.eps* file in the results folder.  
+3. The `map_data.R` script will create the map and save it as an *.eps* file in the results folder.  
