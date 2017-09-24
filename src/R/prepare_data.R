@@ -1,11 +1,5 @@
-library(tidyverse)
-library(sf)
-library(raster)
-library(rasterVis)
-source("src/R/get_data.R")
-source("src/R/plot_theme.R")
 
-################## Read in all spatial layers
+################## Read in and process all spatial layers
 
 # Import the US States and project to albers equal area
 states <- st_read(dsn = us_prefix,
@@ -73,30 +67,6 @@ nks_df <-  nks_df %>%
   mutate(long = coords.x1,
          lat = coords.x2)
 
-# Create the map
-p <- ggplot() +
-  # map the raster
-  geom_raster(data = forest, aes(x = x,
-                                 y = y,
-                                 fill = factor(forest_only),
-                                 alpha = factor(forest_only)),
-              show.legend = FALSE) +
-  scale_alpha_discrete(name = "", range = c(0, 1), guide = F) +
-  scale_fill_manual(values = c("transparent", "forestgreen")) +
-  # map the neon domains
-  geom_polygon(data=nd_df, aes(x = long, y = lat, group = group), 
-               color='black', fill = "transparent", size = .25)+
-  # map the forested sites that are not in the study
-  geom_point(data = nsf_df, aes(x = long, y = lat), size = 2, 
-          colour = "#000000", fill = NA, shape = 20) +
-  # map the forested sites that are in the study
-  geom_point(data = nks_df,  aes(x = long, y = lat), size = 2,
-          colour='#D62728', fill = NA, shape = 18) +
-  theme(legend.position = "none") +
-  theme_map()
-
-ggsave(file = "results/site_map.eps", p, width = 4, height = 3, 
-       dpi=600, units = "cm", scale = 3) #saves p
 
 
 
