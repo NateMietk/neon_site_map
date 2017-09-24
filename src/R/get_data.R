@@ -3,6 +3,8 @@ library(assertthat)
 library(rvest)
 library(httr)
 library(purrr)
+library(sf)
+library(raster)
 
 prefix <- file.path("data")
 us_prefix <- file.path(prefix, "cb_2016_us_state_20m")
