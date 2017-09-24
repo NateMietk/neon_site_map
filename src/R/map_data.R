@@ -1,7 +1,7 @@
 
 source("src/R/get_data.R")
-source("src/R/plot_theme.R")
 source("src/R/prepare_data.R")
+source("src/R/plot_theme.R")
 
 # Create the map
 
@@ -31,4 +31,4 @@ p <- ggplot() +
   theme_map()
 
 ggsave(file = "results/site_map.eps", p, width = 4, height = 3, 
-       dpi=600, units = "cm", scale = 3) #saves p
+       dpi = 300, units = "cm") #saves p
