@@ -43,11 +43,16 @@ neon_forest_sites <- extract(forests, as(neon_sites, "Spatial"), df=TRUE, sp = T
   st_as_sf() %>%
   filter(., conus_forestgroup != 0) %>%
   filter(SiteName != "LBJ National Grassland" &
-           !(PMC %in% c("D16CT1", "D13CT1", "D12CT1", "D17CT1"))) %>%
+           !(PMC %in% c("D16CT1", "D13CT1", "D12CT1"))) %>%
   mutate(group = 'Forested')
 
 neon_key_sites <- neon_sites %>%
-  filter(PMC %in% c("D16CT1", "D13CT1", "D12CT1", "D17CT1")) %>%
+  filter(PMC %in% c("D16CT1", "D13CT1", "D12CT1")) %>%
+  mutate(group = 'Key',
+         id = row_number())
+
+neon_Joaquin_sites <- neon_sites %>%
+  filter(PMC %in% c("D17CT1")) %>%
   mutate(group = 'Key',
          id = row_number())
 
@@ -67,7 +72,11 @@ nks_df <-  nks_df %>%
   mutate(long = coords.x1,
          lat = coords.x2)
 
-
+neon_Joaquin_sites <- as(neon_Joaquin_sites, "Spatial")
+nj_df <- data.frame(neon_Joaquin_sites) 
+nj_df <-  nj_df %>% 
+  mutate(long = coords.x1,
+         lat = coords.x2)
 
 
 

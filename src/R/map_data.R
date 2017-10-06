@@ -18,14 +18,16 @@ p <- ggplot() +
   
   # map the neon domains
   geom_polygon(data=nd_df, aes(x = long, y = lat, group = group), 
-               color='black', fill = "transparent", size = .25)+
+               color='black', fill = "transparent", size = .10)+
   
   # map the forested sites that are not in the study
-  geom_point(data = nsf_df, aes(x = long, y = lat), size = 2, 
+  geom_point(data = nsf_df, aes(x = long, y = lat), size = 1, 
+             colour = "#000000", fill = NA, shape = 20) +
+  geom_point(data = nj_df, aes(x = long, y = lat), size = 1, 
              colour = "#000000", fill = NA, shape = 20) +
   
   # map the forested sites that are in the study
-  geom_point(data = nks_df,  aes(x = long, y = lat), size = 2,
+  geom_point(data = nks_df,  aes(x = long, y = lat), size = 1,
              colour='#D62728', fill = NA, shape = 18) +
   theme(legend.position = "none") +
   theme_map()
