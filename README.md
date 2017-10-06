@@ -1,5 +1,43 @@
-# Main figure for the 2017 NSF Macrosystems proposal
+Main figure for the 2017 NSF Macrosystems proposal
+================
+
+Goals
+------------
 
 This script downloads all necessary data, processing them, and creates a reproducible map.
 
-To create the image simply run the src/R/map_data.R script.  This will call the src/R/get_data.R, src/R/prepare_data.R, and the src/R/plot_theme.R scripts necessary to create the map.  The get_data.R script will create data folders, download the data from web links, and unzip the files.  The prepare_data.R script will process all neccesary spatial files to be fed into the ggplot map routine.  The map_data.R script will create the map and save it as an *.eps file in the results folder.  
+Requirements
+------------
+
+Downloading and processing the data requires that you have [R](https://www.r-project.org/) installed, and the following R packages:
+
+-   tidyverse
+-   raster
+-   sf
+-   assetthat
+-   rvest
+-   purrr
+
+If you do not have these packages, you can try to install them with `install.packages()`, e.g.,
+
+``` r
+install.packages('tidyr')
+```
+Running the script
+------------------
+
+To run the R script, you can use `Rscript` from the terminal:
+
+``` bash
+Rscript map_data.R
+```
+This will call all R scripts and run all processess.
+
+Tasks
+------------
+
+1. The script `get_data.R` pulls data from the internet, so you'll need an internet connection.  It will automatically verify that the data are currently not downloaded to your machine, created appropriate folder for storage, and unzip files.
+
+2. The script `prepare_data.R` will process all neccesary spatial files to be fed into the ggplot map routine
+
+3. The `map_data.R` script will create the map and save it as an *.eps* file in the results folder.  
